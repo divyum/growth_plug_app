@@ -91,6 +91,7 @@ TEMPLATES = [
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
+    os.path.join(BASE_DIR, "static"),
 )
 
 WSGI_APPLICATION = 'growth_plug_app.wsgi.application'

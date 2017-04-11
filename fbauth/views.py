@@ -22,7 +22,7 @@ def home(request):
 
 @login_required
 def listings(request):
-	access_token=User.objects.get(email=request.user.email, password="1234")
+	# access_token=User.objects.get(email=request.user.email, password="1234")
 	access_token = "EAAZAGLljfOl8BACZB6NcWxRv1ItJENw70WzajjMEV9ThMkqgilfKHduyfx58ioIV1ZAzkb99DlZANaOy5gUT0QEsAvnsav8V1jyVvt8yn2P1m5pRf86nPVNCNRceZAEEYmmWAkf22kSdfAuKDVI5sgqOCa1Fv30EZD"
 	if request.user.is_authenticated():
 		graph = GraphAPI(access_token)

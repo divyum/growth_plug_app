@@ -30,6 +30,4 @@ urlpatterns = [
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^admin/', admin.site.urls),
     url(r'^update/(?P<page_id>\d+)/(?P<page_access_token>\w+)/$', core_views.update, name='update'),
-]
-
-urlpatterns += staticfiles_urlpatterns()
+]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
