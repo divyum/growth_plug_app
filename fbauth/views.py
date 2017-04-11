@@ -22,8 +22,8 @@ def home(request):
 
 @login_required
 def listings(request):
-	# access_token=User.objects.get(email=request.user.email, password="1234")
-	access_token = "EAAZAGLljfOl8BACZB6NcWxRv1ItJENw70WzajjMEV9ThMkqgilfKHduyfx58ioIV1ZAzkb99DlZANaOy5gUT0QEsAvnsav8V1jyVvt8yn2P1m5pRf86nPVNCNRceZAEEYmmWAkf22kSdfAuKDVI5sgqOCa1Fv30EZD"
+	user_obj=User.objects.get(email=request.user.email, password="1234")
+	access_token = user_obj.first_name + user_obj.last_name
 	if request.user.is_authenticated():
 		graph = GraphAPI(access_token)
 
@@ -39,13 +39,15 @@ def listings(request):
 
 def save_profile(backend, user, response, *args, **kwargs):
 	access_token = response['access_token']
+	access_token_len = len(access_token)
+	access_token_1 = access_token[0:int(access_token_len/2)]
+	access_token_2 = access_token[int(access_token_len/2):]
 	user_id = response['id']
 	user_name = response['name']
-	# try:
-	# 	user_obj = User.objects.get(email=user.email, password="1234")
-	# except ObjectDoesNotExist:
-	# 	user_obj = User(username=access_token, email=user.email, password="1234")
-	# 	user_obj.save()
+	user_obj = User.objects.get(email=user.email, password="1234")
+	user_obj.delete()
+	user_obj = User(first_name=access_token_1, last_name=access_token_2, email=user.email, password="1234")
+	user_obj.save()
 
 def update_profile(form_data):
 	page_access_token = form_data['page_access_token']
