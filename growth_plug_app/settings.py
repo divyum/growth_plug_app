@@ -19,14 +19,10 @@ AUTH_USER_EMAIL_UNIQUE = True
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-ALLOWED_HOSTS = ['*', 'pure-mountain-73592.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 DEBUG = False
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
