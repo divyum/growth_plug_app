@@ -17,11 +17,10 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUTH_USER_EMAIL_UNIQUE = True
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ['*']
 
-DEBUG = True
+DEBUG = False
 
 
 # Quick-start development settings - unsuitable for production
@@ -33,7 +32,6 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-ALLOWED_HOSTS = []
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
@@ -103,8 +101,7 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
     }
 }
 DATABASES['default'] = dj_database_url.config()
@@ -173,3 +170,14 @@ SOCIAL_AUTH_FACEBOOK_SECRET = '115aea8aef96be3e27ae7da5ed8a1828'  # App Secret
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 STATIC_PATH = '/templates/'
+
+DATABASES = { 'default' : dj_database_url.config()}
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# try to load local_settings.py if it exists
+try:
+  from local_settings import *
+except Exception as e:
+  pass
