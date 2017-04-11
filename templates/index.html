@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section id="container" >
+      <header class="header black-bg">
+              <div class="sidebar-toggle-box">
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+              </div>
+            <!--logo start-->
+            <a href="index.html" class="logo"><b>growth plug</b></a>
+            <!--logo end-->
+            <div class="top-menu">
+              <p class="pull-right">Hello {{ user.username }}!</p>
+            	<ul class="nav pull-right top-menu">
+                    <li><a class="logout" href="login.html">Logout</a></li>
+            	</ul>
+            </div>
+        </header>
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">              
+                  <li class="sub-menu">
+                      <a class="active" href="index.html">
+                          <i class="fa fa-dashboard"></i>
+                          <span>Dashboard</span>
+                      </a>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="index.html" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Website</span>
+                      </a>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="index.html" >
+                          <i class="fa fa-bar-chart-o"></i>
+                          <span>Visitors</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="index.html" >
+                          <i class="fa fa-book"></i>
+                          <span>Reviews</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="{% url 'listings' %}" >
+                          <i class="fa fa-tasks"></i>
+                          <span>Listings</span>
+                      </a>                      
+                  </li>
+                  <li class="sub-menu">
+                      <a href="index.html" >
+                          <i class="fa fa-th"></i>
+                          <span>Appointments</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="index.html" >
+                          <i class=" fa fa-cogs"></i>
+                          <span>Settings</span>
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </aside>
+  </section>
+  {% endblock %}

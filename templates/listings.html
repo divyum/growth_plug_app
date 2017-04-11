@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% block content %}
+  <section id="container" >
+      <header class="header black-bg">
+              <div class="sidebar-toggle-box">
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+              </div>
+            <a href="index.html" class="logo"><b>growth plug</b></a>
+            <div class="top-menu">
+              <p class="pull-right">{{ user.username }}</p>
+              <ul class="nav pull-right top-menu">
+                    <li><a class="logout" href="{% url 'logout' %}">Logout</a></li>
+              </ul>
+            </div>
+        </header>
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">              
+                  <li class="sub-menu">
+                      <a href="index.html">
+                          <i class="fa fa-dashboard"></i>
+                          <span>Dashboard</span>
+                      </a>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="index.html" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Website</span>
+                      </a>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="index.html" >
+                          <i class="fa fa-bar-chart-o"></i>
+                          <span>Visitors</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="index.html" >
+                          <i class="fa fa-book"></i>
+                          <span>Reviews</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a class="active" href="{% url 'listings' %}" >
+                          <i class="fa fa-tasks"></i>
+                          <span>Listings</span>
+                      </a>                      
+                  </li>
+                  <li class="sub-menu">
+                      <a href="index.html" >
+                          <i class="fa fa-th"></i>
+                          <span>Appointments</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="index.html" >
+                          <i class=" fa fa-cogs"></i>
+                          <span>Settings</span>
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </aside>
+  </section>
+
+      <section id="main-content">
+          <section class="wrapper">				
+              <div class="row mt">
+                  <div class="col-md-12">
+                      <div class="content-panel">
+                          <table class="table table-striped table-advance table-hover">
+	                  	  	  <h4>Listings</h4>
+	                  	  	  <hr>
+                              <thead>
+                              <tr>
+                                  <th><i class="fa"></i>Image</th>
+                                  <th><i class="fa"></i>Source</th>
+                                  <th><i class="fa"></i>Name</th>
+                                  <th><i class="fa"></i>Address</th>
+                                  <th><i class="fa"></i>Phone</th>
+                                  <th><i class="fa"></i>Rating</th>
+                                  <th><i class="fa"></i>Listed</th>
+                                  <th><i class="fa"></i>Status</th>
+                                  <th><i class="fa"></i>Action</th>
+                                  <th></th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr>
+                                  <td><i class="fa fa-google-plus" style="font-size:20px"></td>
+                                  <td>Google</td>
+                                  <td>ABC Dental</td>
+                                  <td>2101 California St</td>
+                                  <td>111.111.1111</td>
+                                  <td>3/5</td>
+                                  <td>Yes</td>
+                                  <td><i class="fa fa-check" style="font-size:20px;color:green"></i></td>
+                                  <td>
+                                  <button class="btn btn-primary" type="submit">Update</button>
+                                  </td>
+                              </tr>
+                              <tr>
+                                    <td><i class="fa fa-twitter" style="font-size:20px"></td>
+                                    <td>Twitter</td>
+                                    <td>ABC Dental</td>
+                                    <td>2101 California St</td>
+                                    <td>111.111.1111</td>
+                                    <td>3/5</td>
+                                    <td>Yes</td>
+                                    <td><i class="fa fa-check" style="font-size:20px;color:green"></i></td>
+                                    <td>
+                                    <button class="btn btn-primary" type="submit">Update</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                      <td><i class="fa fa-yahoo" style="font-size:20px"></td>
+                                      <td>Yahoo</td>
+                                      <td>ABC Dental</td>
+                                      <td>2101 California St</td>
+                                      <td>111.111.1111</td>
+                                      <td>2/5</td>
+                                      <td>Yes</td>
+                                      <td><i class="fa fa-check" style="font-size:20px;color:green"></i></td>
+                                      <td>
+                                      <button class="btn btn-primary" type="submit">Update</button>
+                                      </td>
+                                  </tr>
+                                  
+                                    {% for id in data %}
+                                    <tr>
+                                      <td><i class="fa fa-facebook" style="font-size:20px"></td>
+                                      <td>Facebook</td>
+                                      <td>{{ id.name }}</td>
+                                      <td>{{ id.single_line_address }}</td>
+                                      <td>{{ id.phone }}</td>
+                                      <td>3/5</td>
+                                      <td>Yes</td>
+                                      <td><i class="fa fa-check" style="font-size:20px;color:green"></i></td>
+                                      <td>
+                                        <a href="{% url 'update' page_id=id.id page_access_token=id.access_token %}" ><button class="btn btn-primary">Update</button></a>
+                                      </td>
+                                    {% endfor %}
+                          
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+
+		</section>
+      </section>
+  </section>
+{% endblock %}
