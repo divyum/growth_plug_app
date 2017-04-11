@@ -40,9 +40,6 @@ def listings(request):
 
 def save_profile(backend, user, response, *args, **kwargs):
 	access_token = response['access_token']
-	# access_token_len = len(access_token)
-	# access_token_1 = access_token[0:150]
-	# access_token_2 = access_token[int(access_token_len/2):]
 	user_id = response['id']
 	user_name = response['name']
 	try:
