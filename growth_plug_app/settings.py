@@ -19,7 +19,7 @@ AUTH_USER_EMAIL_UNIQUE = True
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'pure-mountain-73592.herokuapp.com']
 
 DEBUG = False
 
