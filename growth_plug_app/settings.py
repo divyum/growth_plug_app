@@ -15,15 +15,27 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUTH_USER_EMAIL_UNIQUE = True
+DATABASES['default'] = dj_database_url.config()
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+ALLOWED_HOSTS = ['*']
+
+DEBUG = False
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'aqqf+i9qq=$vc7c!@er$+m@wvl4p#3)#)n2@k*&xh2xt4v1sm-'
-
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
 ALLOWED_HOSTS = []
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -83,14 +95,13 @@ TEMPLATES = [
     },
 ]
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
-]
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
 
 WSGI_APPLICATION = 'growth_plug_app.wsgi.application'
 
-
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -122,8 +133,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 AUTHENTICATION_BACKENDS = (
-    # 'social_core.backends.github.GithubOAuth2',
-    # 'social_core.backends.twitter.TwitterOAuth',
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
@@ -138,15 +147,8 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.associate_user',
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
-    'fbauth.views.save_profile',  # <--- set the path to the function
+    'fbauth.views.save_profile',
 )
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': '/var/tmp/django_cache',
-    }
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -165,12 +167,12 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'listings'
 
-SOCIAL_AUTH_FACEBOOK_KEY = ''  # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = ''  # App Secret
+SOCIAL_AUTH_FACEBOOK_KEY = '1766014733728351'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '115aea8aef96be3e27ae7da5ed8a1828'  # App Secret
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 STATIC_PATH = '/templates/'
