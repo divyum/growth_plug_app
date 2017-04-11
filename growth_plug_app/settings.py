@@ -20,7 +20,7 @@ AUTH_USER_EMAIL_UNIQUE = True
 
 ALLOWED_HOSTS = ['*']
 
-DEBUG = False
+DEBUG = True
 
 
 # Quick-start development settings - unsuitable for production
